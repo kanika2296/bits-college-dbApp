@@ -48,8 +48,6 @@ coursePlace
 11. python manage.py runserver
 12. Navigate to 127.0.0.1:8000/erp/
 ```
-### Markdown
-
 
 ![Image](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(61).png)
 ![Image](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(62).png)
