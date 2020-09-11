@@ -1,5 +1,5 @@
 # College Erp Application in Django
-
+For login : password - root
 ## Steps to Run:
 1. Open PowerShell and mkdir bitshyd
 2. Run python -m venv venv
