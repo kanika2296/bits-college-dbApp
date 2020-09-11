@@ -9,6 +9,8 @@ The database has four user roles : Administrator, teacher, students, TA
 3. Teachers can update student scores
 4. Teachers can view and update their personal information
 5. Teachers can fetch top three scorers for a course
+
+
 ## Students:
 1. Students can enroll in a course
 2. Students can  drop a course    
@@ -16,12 +18,14 @@ The database has four user roles : Administrator, teacher, students, TA
 4. Students can view and update their personal information
 5. View courses available to enroll as TA
 6. Students can view Class Average and Highest marks 
+
+
 ## TA:
 1. TA can update score of students
 2. View courses available to enroll 
 
 ## Steps to Run:
-1. Open PowerShell and mkdir bitshyd
+'''1. Open PowerShell and mkdir bitshyd
 2. Run python -m venv venv
 3. Activate scripts by running venv\Scripts\activate
 4. pip install django
@@ -31,7 +35,7 @@ The database has four user roles : Administrator, teacher, students, TA
 8. python manage.py inspectdb > models.py
 9. python manage.py makemigrations erpApp
 10. make migration 
-11. python manage.py runserver
+11. python manage.py runserver'''
 
 ## Screenshots of application 
 ![alt text](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(61).png)
