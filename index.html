@@ -40,78 +40,64 @@
   <div class="row content">
     <div class="col-sm-3 sidenav">
       <br>
-      <h4>ERP Application</h4>
       <img src="logo.png" alt="logo" />
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Blog..">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
+        <h4>ERP Application</h4>
       </div>
     </div>
 
     <div class="col-sm-9">
-      <h4><small>RECENT POSTS</small></h4>
+      <h4><small>Objective</small></h4>
+      <p>To implement the erp system, having entities like Students, Teachers, Courses, Location of courses , Scores and TAs</p>
       <hr>
-      <h2>I Love Food</h2>
-      <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
-      <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
-      <p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <h2>Function</h2>
+      <h3> Teacher:</h3>
+      <ol>
+        <li> Teachers can view all students enrolled for a course </li>
+        <li>Teachers can view all TAs assigned for a course</li>
+        <li>Teachers can update student scores</li>
+      <li>Teachers can view and update their personal information</li>
+    <li>Teachers can fetch top three scorers for a course</li>
+      </ol>
+      <h3>Students:</h3>
+      <ol>
+        <li> Students can enroll in a course</li>
+<li> Students can  drop a course    </li>
+<li> Students can view scores</li>
+<li>Students can view and update their personal information</li>
+<li> View courses available to enroll as TA</li>
+<li>Students can view Class Average and Highest marks</li> 
+        <h3>TA:</h3>
+<li> TA can update score of students</li>
+<li> View courses available to enroll </li>
       <br><br>
       
-      <h4><small>RECENT POSTS</small></h4>
-      <hr>
-      <h2>Officially Blogging</h2>
-      <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>
-      <h5><span class="label label-success">Lorem</span></h5><br>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <hr>
+        <h2>Models:</h2>
+        <p><code>Students : Primary key(PK) - studentid 
+Courses : PK courseid
+Teachers : PK teacherid
+Scorelookup : PK grade
+Place : PK placeid
+TA: PK courseid and studentid, fk referenced from courses and students respectively 
 
-      <h4>Leave a Comment:</h4>
-      <form role="form">
-        <div class="form-group">
-          <textarea class="form-control" rows="3" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
-      <br><br>
-      
-      <p><span class="badge">2</span> Comments:</p><br>
-      
-      <div class="row">
-        <div class="col-sm-2 text-center">
-          <img src="bandmember.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-        </div>
-        <div class="col-sm-10">
-          <h4>Anja <small>Sep 29, 2015, 9:12 PM</small></h4>
-          <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <br>
-        </div>
-        <div class="col-sm-2 text-center">
-          <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-        </div>
-        <div class="col-sm-10">
-          <h4>John Row <small>Sep 25, 2015, 8:25 PM</small></h4>
-          <p>I am so happy for you man! Finally. I am looking forward to read about your trendy life. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <br>
-          <p><span class="badge">1</span> Comment:</p><br>
-          <div class="row">
-            <div class="col-sm-2 text-center">
-              <img src="bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-            </div>
-            <div class="col-xs-10">
-              <h4>Nested Bro <small>Sep 25, 2015, 8:28 PM</small></h4>
-              <p>Me too! WOW!</p>
-              <br>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+To depict many to many relations between entities:
+teacherCourse
+studentCourse
+          coursePlace</code></p>
+      <hr>
+        <h2>Steps to run:</h2>
+        <p><code>1. Open PowerShell and mkdir bitshyd
+2. Run python -m venv venv
+3. Activate scripts by running venv\Scripts\activate
+4. pip install django
+5. pip install mysqlclient
+6. django-admin startproject bits
+7. cd bits and run python manage.py startapp erpApp *copy erpApp files to this folder*
+8. python manage.py inspectdb > models.py
+9. python manage.py makemigrations erpApp
+10. make migration 
+11. python manage.py runserver
+          12. Navigate to 127.0.0.1:8000/erp/</code></p>
 
 <footer class="container-fluid">
   <p>Footer Text</p>
