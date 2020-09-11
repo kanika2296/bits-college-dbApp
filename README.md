@@ -1,1 +1,1 @@
-# bits-college-dbApp
+# College DB application in Django
