@@ -1,4 +1,4 @@
-## Erp Database Application in Django
+## ERP Database Application in Django
 
 Three different roles can access the erp application. The roles are Teacher , Student and TA. Following are the functions supported by the application:
 The database has four user roles : Administrator, teacher, students, TA
