@@ -12,6 +12,7 @@
 9. python manage.py makemigrations erpApp
 10. make migration 
 11. python manage.py runserver
+12. Navigate to 127.0.0.1:8000/erp/
 
 ![alt text](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(61).png)
 ![alt text](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(62).png)
