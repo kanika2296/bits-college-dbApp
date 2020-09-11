@@ -1,5 +1,4 @@
 # College Erp Application in Django
 
-![Login Page](/screenshot/Screenshot(61).png)
-Format: ![Alt Text](url)
+![alt text](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(61).png)
 
