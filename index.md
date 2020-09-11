@@ -1,37 +1,68 @@
-## Welcome to GitHub Pages
+## ERP Database Application
 
-You can use the [editor on GitHub](https://github.com/kanika2296/sample/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Objective: To implement the erp system, having entities like Students, Teachers, Courses, Location of courses , Scores and TAs
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Functions:
+### Teacher:
+1. Teachers can view all students enrolled for a course 
+2. Teachers can view all TAs assigned for a course
+3. Teachers can update student scores
+4. Teachers can view and update their personal information
+5. Teachers can fetch top three scorers for a course
+### Students:
+1. Students can enroll in a course
+2. Students can  drop a course    
+3. Students can view scores
+4. Students can view and update their personal information
+5. View courses available to enroll as TA
+6. Students can view Class Average and Highest marks 
+### TA:
+1. TA can update score of students
+2. View courses available to enroll 
 
+### Models
+Students : Primary key(PK) - studentid 
+Courses : PK courseid
+Teachers : PK teacherid
+Scorelookup : PK grade
+Place : PK placeid
+TA: PK courseid and studentid, fk referenced from courses and students respectively 
+
+To depict many to many relations between entities:
+teacherCourse
+studentCourse
+coursePlace
+
+## Steps to Run:
+```steps to run:
+1. Open PowerShell and mkdir bitshyd
+2. Run python -m venv venv
+3. Activate scripts by running venv\Scripts\activate
+4. pip install django
+5. pip install mysqlclient
+6. django-admin startproject bits
+7. cd bits and run python manage.py startapp erpApp *copy erpApp files to this folder*
+8. python manage.py inspectdb > models.py
+9. python manage.py makemigrations erpApp
+10. make migration 
+11. python manage.py runserver
+12. Navigate to 127.0.0.1:8000/erp/
+```
 ### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+![Image](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(61).png)
+![Image](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(62).png)
+![Image](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(64).png)
+![Image](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(66).png)
+![Image](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(67).png)
+![Image](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(68).png)
+![Image](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(69).png)
+![Image](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(70).png)
+![Image](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(72).png)
+![Image](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(73).png)
+![Image](https://github.com/kanika2296/bitsErpApp/blob/master/screenshot/Screenshot%20(74).png)
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kanika2296/sample/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
