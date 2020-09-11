@@ -1,0 +1,287 @@
+﻿{% extends "erpApp/base1.html" %}
+{% load crispy_forms_tags %}
+{%block func1%}
+<script>
+    function editEnable(val) {
+        var t = "btnS" + val;
+        input1 = document.getElementById("i"+val).disabled=false;
+        btnS = document.getElementById(t).style.visibility = "visible";
+        btn = document.getElementById("btn"+val).style.visibility = "hidden";
+
+    }
+ </script>
+<script>
+    function sub(sid,cid) {
+        $.ajax({
+            type: "POST",
+            url: "{% url 'updatescore' %}",
+            data: {
+                sid: sid,
+                grade: $('#i' + sid).val(),
+                cid: cid,
+                dataType: "json",
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+            },
+            success: function (json) {
+                document.getElementById('output' + sid).innerHTML = "Success";
+                input1 = document.getElementById("i" + sid).disabled = true;
+                btnS = document.getElementById("btnS" + sid).style.visibility = "hidden";
+                btn = document.getElementById("btn" + sid).style.visibility = "visible";
+            },
+
+            failure: function () {
+                alert("aa");
+            }
+
+
+        });
+
+    }
+
+
+</script>
+<ul>
+    <a href="{% url 'teacher' 1 %}" class="list-group-item">View Courses</a>
+    <a href="{% url 'teacher' 2 %}" class="list-group-item">View Students</a>
+    <a href="{% url 'teacher' 3 %}" class="list-group-item">View TA</a>
+    <a href="{% url 'teacher' 6 %}" class="list-group-item">Update Scores</a>
+    <a href="{% url 'teacher' 4 %}" class="list-group-item">Edit Details</a>
+    <a href="{% url 'teacher' 5 %}" class="list-group-item">Logout</a>
+</ul>
+{%endblock%}
+{% block content %}
+<div class="col-md-12">
+    {% ifequal id "1" %}
+    <h3>Courses:</h3>
+    <hr />
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Course ID</th>
+                    <th>Name</th>
+                    <th>Number</th>
+                    <th>Level</th>
+                    <th>Credit</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                <tr>
+                    <td name="cid"> {{ course.courseid }}</td>
+                    <td> {{ course.coursename }}</td>
+                    <td> {{ course.coursenumber }}</td>
+                    <td> {{course.level}}</td>
+                    <td>{{ course.credit}}</td>
+
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+    </div>
+    {% endifequal %}
+    {% ifequal id "2" %}
+    <div class="row">
+        <h3>Select a Course</h3>
+        <hr /><ol>
+        {% for course in courses %}
+        <li><a href="{% url 'teachers' id course.courseid   %}">{{course.coursename}}</a></li><br />
+        {%endfor%}
+        </ol>
+    </div>
+    {% endifequal %}
+    <!-- student TA -->
+    {% ifequal id "ViewStudentsbyCourse" %}
+    <h3> Student List: </h3>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Year</th>
+                    <th>Email</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for std in students %}
+                <tr>
+                    <td> {{ std.studentid }}</td>
+                    <td> {{ std.fname }}  {{std.lname}}</td>
+                    <td> {{ std.department }}</td>
+                    <td> {{std.year}}</td>
+                    <td>{{ std.email}}</td>
+
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+    </div>
+    {%endifequal%}
+    <!-- view TA -->
+    {% ifequal id "3" %}
+    <div class="row">
+        <h3>Select a Course</h3>
+        <hr /><ol>
+    {% for course in courses %}
+    <li><a href="{% url 'teachers' id course.courseid   %}">{{course.coursename}}</a></li>
+    <br />
+    {%endfor%}
+</ol>
+    </div>
+    {% endifequal %}
+    <!-- view TA end-->
+    <!-- display TA -->
+    {% ifequal id "ViewTAbyCourse" %}
+    <h3> TA List: </h3>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>TA ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Year</th>
+                    <th>Email</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for std in students %}
+                <tr>
+                    <td> {{ std.studentid }}</td>
+                    <td> {{ std.fname }}  {{std.lname}}</td>
+                    <td> {{ std.department }}</td>
+                    <td> {{std.year}}</td>
+                    <td>{{ std.email}}</td>
+
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+    </div>
+    {%endifequal%}
+    <!-- display TA end -->
+    <!--display edit -->
+    {%ifequal id "4"%}
+    <h3> Details : </h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Teacher ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+            </tr>
+        </thead>
+        <tbody>
+        <td>{{ request.session.userid }}</td>
+        <td>{{ tfull.fname}}  {{tfull.lname}}</td>
+        <td>{{tfull.email}}</td>
+        <td>{{tfull.phone}}</td>
+        </tbody>
+    </table>
+    <button class="btn btn-danger"><a id="editbtn" href="{% url 'teachers' id  request.session.userid  %}">Edit</a></button>
+    <hr />
+    {%endifequal%}
+    {%ifequal id "editTeacher" %}
+    <h3> Details : </h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Teacher ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+            </tr>
+        </thead>
+        <tbody>
+        <td>{{ request.session.userid }}</td>
+        <td>{{ tfull.fname}}  {{tfull.lname}}</td>
+        <td>{{tfull.email}}</td>
+        <td>{{tfull.phone}}</td>
+        </tbody>
+    </table>
+    <hr />
+    <div class="edit">
+        <div class="card card-signin col-md-6" style="margin:1% 20% ;border-radius: 0rem;box-shadow:none">
+            <div class="card-body">
+                <h5 class="card-title text-center">Edit Details</h5>
+                <form class="form-signin" method="POST">
+                 
+                    <div class="form-label-group">
+                        <label for="inputEmail">Email</label>
+                        <div class="form-control" id="in1">{{form.update_email}}</div>
+                    </div>
+
+                    <div class="form-label-group">
+                        <label for="inputPassword">Contact</label>
+                        <div class="form-control" id="in1">{{form.update_phone}}</div>
+                    </div><br />
+                    <button class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {%endifequal%}
+    <!-- disaply edit end-->
+    <!--update score-->
+    {%ifequal id "6"%}
+    <div class="row">
+        <h3>Select a Course</h3>
+        <hr />
+        <ol>
+            {% for course in courses %}
+            <li><a href="{% url 'teachers' id course.courseid  %}">{{course.coursename}}</a></li>
+            <br />
+            {%endfor%}
+        </ol>
+    </div>
+    {%endifequal%}
+
+    {%ifequal id "StudentlistScore"%}
+    <h3> Student List: </h3>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Score</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for std in students %}
+                <tr>
+                    <form method="POST" id="FORM_ID">
+                        {% csrf_token %}
+                        <td>{{std.students_studentid}}</td>
+                        <td> {{ std.students_studentid__fname }} {{ std.students_studentid__lname }}</td>
+                        <td>
+                            <input id="i{{std.students_studentid}}" name="grade" disabled="disabled" value={{ std.grade }}> 
+                            <span class="alert-success" id="output{{std.students_studentid}}">
+
+                            </span>
+                        </td>
+                        <td>
+                            <button id="btnS{{std.students_studentid}}" class="btn btn-success" style="visibility:hidden" type="button" onclick="sub({{ std.students_studentid }}, {{ courseid}})">SAVE</button>
+                            <button class="btn btn-warning" id="btn{{std.students_studentid}}" onclick="editEnable({{std.students_studentid}})" type="button" style="visibility:visible">Edit</button>
+                        </td>
+                    </form>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+    {%endifequal%}
+    <!--update score end-->
+    {% endblock content %}
+</div>

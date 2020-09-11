@@ -1,0 +1,85 @@
+﻿:root {
+    --input-padding-x: 1.5rem;
+    --input-padding-y: .75rem;
+}
+#id_password,#id_userid,#id_category,#id_update_email,#id_update_phone  
+{
+    border:solid 0px;
+    padding:0;
+    width:100%;
+}
+body {
+    background: #f1f1f1;  
+}
+/* background: linear-gradient(to right, #0062E6, #33AEFF);*/
+.card-signin {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    margin-top:10%;
+    margin-left:35%;
+    
+}
+
+    .card-signin .card-title {
+        margin-bottom: 2rem;
+        font-weight: 300;
+        font-size: 1.5rem;
+    }
+
+    .card-signin .card-body {
+        padding: 2rem;
+    }
+
+.form-signin {
+    width: 100%;
+}
+
+    .form-signin .btn {
+        font-size: 80%;
+        border-radius: 5rem;
+        letter-spacing: .1rem;
+        font-weight: bold;
+        padding: 1rem;
+        transition: all 0.2s;
+    }
+.logo
+{
+    margin-top:5%;
+}
+#navbar
+{
+    margin:0;
+    padding:0;
+    top:0;
+    position:absolute;
+    width:100%;
+    left:0;
+    right:0;
+    border-radius:0;
+}
+#sidenav {
+    text-align: left;
+    padding: 2%;
+    background: #fff;
+    height: 100%;
+    position: relative;
+    top: 38;
+    left: 0;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+#cnt
+{
+    padding-top:5%;
+}
+#editbtn
+{
+    color:#fff;
+    padding:2%;
+    font-size:16px;
+    text-transform:uppercase;
+}
+#editbtn:hover{
+    text-decoration:none;
+    font-size:17px;
+}

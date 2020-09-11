@@ -1,0 +1,157 @@
+﻿{% extends "erpApp/base1.html" %}
+{% load crispy_forms_tags %}
+{%block func1%}
+<script>
+    function editEnable(val) {
+        var t = "btnS" + val;
+        input1 = document.getElementById("i" + val).disabled = false;
+        btnS = document.getElementById(t).style.visibility = "visible";
+        btn = document.getElementById("btn" + val).style.visibility = "hidden";
+
+    }
+</script>
+<script>
+    function sub(sid,cid) {
+        $.ajax({
+            type: "POST",
+            url: "{% url 'updatescore' %}",
+            data: {
+                sid: sid,
+                grade: $('#i' + sid).val(),
+                cid: cid,
+                dataType: "json",
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+            },
+            success: function (json) {
+                document.getElementById('output' + sid).innerHTML = "Success";
+                input1 = document.getElementById("i" + sid).disabled = true;
+                btnS = document.getElementById("btnS" + sid).style.visibility = "hidden";
+                btn = document.getElementById("btn" + sid).style.visibility = "visible";
+            },
+
+            failure: function () {
+                alert("aa");
+            }
+
+
+        });
+
+    }
+</script>
+<ul>
+    <a href="{% url 'ta' 1 %}" class="list-group-item">Enroll as TA</a>
+    <a href="{% url 'ta' 2 %}" class="list-group-item">Update Score</a>
+    <a href="{% url 'ta' 3 %}" class="list-group-item">Logout</a>
+</ul>
+{%endblock%}
+{% block content %}
+<div class="col-md-12">
+    <!-- Enroll TA-->
+    {%ifequal id "1" %}
+    <h3>Available Courses :</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Course ID</th>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Level</th>
+                <th>Credit</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in avl %}
+            <tr>
+                <td name="cid"> {{ course.courseid }}</td>
+                <td> {{ course.coursename }}</td>
+                <td> {{ course.coursenumber }}</td>
+                <td> {{course.level}}</td>
+                <td>{{ course.credit}}</td>
+                <td><button class="btn btn-success"><a href="{%url 'tas' id course.courseid %}" style="color:#fff;">Enroll</a></button></td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    <hr />
+    <h3>Current :</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Course ID</th>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Level</th>
+                <th>Credit</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr>
+                <td name="cid"> {{ course.courseid }}</td>
+                <td> {{ course.coursename }}</td>
+                <td> {{ course.coursenumber }}</td>
+                <td> {{course.level}}</td>
+                <td>{{ course.credit}}</td>
+
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    {%endifequal%}
+    <!--enroll -->
+    <!-- update-->
+    {% ifequal id "2" %}
+    <div class="row">
+        <h3>Select a Course</h3>
+        <hr /><ol>
+            {% for course in courses %}
+            <li><a href="{% url 'tas' id course.courseid   %}">{{course.coursename}}</a></li>
+            <br />
+            {%endfor%}
+        </ol>
+    </div>
+    {% endifequal %}
+    {%ifequal id "StudentlistScore"%}
+    <h3> Student List: </h3>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Score</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for std in students %}
+                <tr>
+                    <form method="POST" id="FORM_ID">
+                        {% csrf_token %}
+                        <td>{{std.students_studentid}}</td>
+                        <td> {{ std.students_studentid__fname }} {{ std.students_studentid__lname }}</td>
+                        <td>
+                            <input id="i{{std.students_studentid}}" name="grade" disabled="disabled" value={{ std.grade }}>
+                            <span class="alert-success" id="output{{std.students_studentid}}">
+
+                            </span>
+                        </td>
+                        <td>
+                            <button id="btnS{{std.students_studentid}}" class="btn btn-success" style="visibility:hidden" type="button" onclick="sub({{ std.students_studentid }}, {{ courseid}})">SAVE</button>
+                            <button class="btn btn-warning" id="btn{{std.students_studentid}}" onclick="editEnable({{std.students_studentid}})" type="button" style="visibility:visible">Edit</button>
+                        </td>
+                    </form>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
+    {%endifequal%}
+    <!--end-->
+
+</div>
+{% endblock content %}
