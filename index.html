@@ -73,31 +73,31 @@
       <br><br>
       
         <h2>Models:</h2>
-        <p><code>Students : Primary key(PK) - studentid 
-Courses : PK courseid
-Teachers : PK teacherid
-Scorelookup : PK grade
-Place : PK placeid
-TA: PK courseid and studentid, fk referenced from courses and students respectively 
+        <p>Students : Primary key(PK) - studentid <br>
+Courses : PK courseid<br>
+Teachers : PK teacherid<br>
+Scorelookup : PK grade<br>
+Place : PK placeid<br>
+TA: PK courseid and studentid, fk referenced from courses and students respectively <br><br>
 
-To depict many to many relations between entities:
-teacherCourse
-studentCourse
-          coursePlace</code></p>
+To depict many to many relations between entities:<br>
+teacherCourse<br>
+studentCourse<br>
+          coursePlace<br></p>
       <hr>
         <h2>Steps to run:</h2>
-        <p><code>1. Open PowerShell and mkdir bitshyd
-2. Run python -m venv venv
-3. Activate scripts by running venv\Scripts\activate
-4. pip install django
-5. pip install mysqlclient
-6. django-admin startproject bits
-7. cd bits and run python manage.py startapp erpApp *copy erpApp files to this folder*
-8. python manage.py inspectdb > models.py
-9. python manage.py makemigrations erpApp
-10. make migration 
-11. python manage.py runserver
-          12. Navigate to 127.0.0.1:8000/erp/</code></p>
+        <p><code>1. Open PowerShell and mkdir bitshyd<br>
+2. Run python -m venv venv<br>
+3. Activate scripts by running venv\Scripts\activate<br>
+4. pip install django<br>
+5. pip install mysqlclient<br>
+6. django-admin startproject bits<br>
+7. cd bits and run python manage.py startapp erpApp *copy erpApp files to this folder*<br>
+8. python manage.py inspectdb > models.py<br>
+9. python manage.py makemigrations erpApp<br>
+10. make migration <br>
+11. python manage.py runserver<br>
+          12. Navigate to 127.0.0.1:8000/erp/<br></code></p>
 
 <footer class="container-fluid">
   <p>Footer Text</p>
