@@ -7,8 +7,8 @@
 4. pip install django
 5. pip install mysqlclient
 6. django-admin startproject bits
-7. python manage.py startapp erpApp *copy erpApp files to this folder*
-8. cd bits and run python manage.py inspectdb > models.py
+7. cd bits and run python manage.py startapp erpApp *copy erpApp files to this folder*
+8. python manage.py inspectdb > models.py
 9. python manage.py makemigrations erpApp
 10. make migration 
 11. python manage.py runserver
